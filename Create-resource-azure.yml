@@ -5,7 +5,7 @@
    - name: Create a Resource Group
      azure_rm_resourcegroup:
         name: HackathonTest
-        location: centralindia
+        location: Southeast Asia
      register: rg
    - name: Display
      debug:
