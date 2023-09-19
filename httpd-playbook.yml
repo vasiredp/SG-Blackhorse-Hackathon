@@ -1,0 +1,22 @@
+- name: Install and start httpd
+  hosts: servera
+  tasks:
+    - name: Ensure httpd package isntalled
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+    - name: Ensure httpd service is started
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+    - name: Index.html delivered
+      ansible.builtin.copy:
+        src: index.html
+        dest: /var/www/html/index.html
+    - name: Port httpd firewall open
+      ansible.posix.firewalld:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: yes
