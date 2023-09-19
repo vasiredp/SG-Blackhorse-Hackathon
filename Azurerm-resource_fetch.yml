@@ -1,6 +1,9 @@
 ---
 - hosts: localhost
   tasks:
-    - name: Create a Resource Group
+    - name: get facts of all resources
       azure_rm_resourcegroup_info:
       register: rg
+    - name: Print
+      debug:
+        var: rg
